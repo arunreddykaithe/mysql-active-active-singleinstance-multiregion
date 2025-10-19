@@ -1,0 +1,53 @@
+group_replication_uuid = "260172fc-0bc4-4760-c9ff-024555078d81"
+next_steps = <<EOT
+==========================================
+Infrastructure Created Successfully!
+==========================================
+    
+Group Replication UUID: 260172fc-0bc4-4760-c9ff-024555078d81
+    
+Region 1 (us-east-2):
+  VPC: vpc-032f08932ff09c149 (10.10.0.0/24)
+  RDS: mysql-active-us-east-2.cnhlgpb2a5r7.us-east-2.rds.amazonaws.com
+    
+Region 2 (us-west-2):
+  VPC: vpc-008a69b257c03dd5b (10.11.0.0/24)
+  RDS: mysql-active-us-west-2.cwxuct9ysyd6.us-west-2.rds.amazonaws.com
+    
+VPC Peering: pcx-0da8ee81757cbab3d (active)
+    
+==========================================
+Next Steps:
+==========================================
+    
+1. Run the setup script to configure Group Replication:
+   cd scripts && ./setup_replication.sh
+    
+2. Or manually configure:
+   - Update parameter groups with group seeds
+   - Reboot RDS instances
+   - Initialize Group Replication on Region 1
+   - Join Region 2 to the group
+    
+3. Test the replication:
+   cd scripts && ./test_replication.sh
+    
+==========================================
+
+EOT
+region1_mysql_command = "mysql -h mysql-active-us-east-2.cnhlgpb2a5r7.us-east-2.rds.amazonaws.com -P 3306 -u admin -p"
+region1_parameter_group = "mysql-active-us-east-2-pg"
+region1_rds_address = "mysql-active-us-east-2.cnhlgpb2a5r7.us-east-2.rds.amazonaws.com"
+region1_rds_endpoint = "mysql-active-us-east-2.cnhlgpb2a5r7.us-east-2.rds.amazonaws.com:3306"
+region1_rds_port = 3306
+region1_vpc_cidr = "10.10.0.0/24"
+region1_vpc_id = "vpc-032f08932ff09c149"
+region2_mysql_command = "mysql -h mysql-active-us-west-2.cwxuct9ysyd6.us-west-2.rds.amazonaws.com -P 3306 -u admin -p"
+region2_parameter_group = "mysql-active-us-west-2-pg"
+region2_rds_address = "mysql-active-us-west-2.cwxuct9ysyd6.us-west-2.rds.amazonaws.com"
+region2_rds_endpoint = "mysql-active-us-west-2.cwxuct9ysyd6.us-west-2.rds.amazonaws.com:3306"
+region2_rds_port = 3306
+region2_vpc_cidr = "10.11.0.0/24"
+region2_vpc_id = "vpc-008a69b257c03dd5b"
+vpc_peering_id = "pcx-0da8ee81757cbab3d"
+vpc_peering_status = "active"
